@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Carte interactive Bora Bora</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="map-container">
+    <img src="ton-image.jpg" alt="Carte interactive" class="map-image">
+    <!-- Ici tes boutons, menus, etc -->
+
+  <!-- Bouton pour afficher / masquer le menu -->
+  <button id="menu-toggle">☰ Menu</button>
+
+  <!-- Conteneur général -->
+  <div id="container">
+
+    <!-- Menu latéral -->
+    <div id="sidebar" class="visible">
+  <h2>Bora Bora - Guide</h2>
+
+  <div class="filters">
+    <h3>Filtres catégories</h3>
+    <button id="show-all">Tout afficher</button>
+    <button class="toggle-btn" data-category="wc">Toilettes Publique</button>
+    <button class="toggle-btn" data-category="medical">Centre médical</button>
+    <button class="toggle-btn" data-category="pharmacy">Pharmacies</button>
+    <button class="toggle-btn" data-category="market">Supérettes</button>
+    <button class="toggle-btn" data-category="restaurant">Restaurants</button>
+    <button class="toggle-btn" data-category="snack">Snack</button>
+    <button class="toggle-btn" data-category="hotels">Hotels</button>
+    <button class="toggle-btn" data-category="hebergement">Petite Hotellerie</button>
+    <button class="toggle-btn" data-category="rentcar">Locations Voitures</button>
+    <button class="toggle-btn" data-category="essence">Station Essence</button>
+    <button class="toggle-btn" data-category="administrations">Administrations</button>
+    <button class="toggle-btn" data-category="church">Églises</button>
+    <button class="toggle-btn" data-category="sites">Sites Historiques</button>
+    <button class="toggle-btn" data-category="bank">Banques</button>
+    <button class="toggle-btn" data-category="shop">Boutiques</button>
+    <button class="toggle-btn" data-category="rando">Randonnées</button>
+    <button class="toggle-btn" data-category="traveloffice">Agence de Voyage</button>
+    <button class="toggle-btn" data-category="art">Galleries D'Art</button>
+  </div>
+
+      <!-- Tes catégories ici -->
+      <div class="category" data-cat="restaurant">
+        <h3>Restaurants</h3>
+        <div class="spot" onclick="focusOnSpot('restaurant1')">Restaurant St James</div>
+        <div class="spot" onclick="focusOnSpot('restaurant2')">Bloody Mary's</div>
+        <div class="spot" onclick="focusOnSpot('restaurant3')">Le Panda D'Or</div>
+        <div class="spot" onclick="focusOnSpot('restaurant4')">Le Gecko</div>
+        <div class="spot" onclick="focusOnSpot('restaurant5')">Villa Mahana</div>
+        <div class="spot" onclick="focusOnSpot('restaurant6')">Bora Bora Beach Club</div>
+        <div class="spot" onclick="focusOnSpot('restaurant7')">The Lucky House - Fare Manuia</div>
+        <div class="spot" onclick="focusOnSpot('restaurant8')">Bora Bora Yacht Club</div>
+        <div class="spot" onclick="focusOnSpot('restaurant9')">Restaurant Tama'a Maitai</div>
+      </div>
+
+      <!-- Autres catégories -->
+      <div class="category" data-cat="snack">
+        <h3>Snacks</h3>
+        <div class="spot" onclick="focusOnSpot('Snack1')">Aloe Café</div>
+        <div class="spot" onclick="focusOnSpot('Snack2')">Pizzeria Paradisio</div>
+        <div class="spot" onclick="focusOnSpot('Snack3')">Snack Lolo</div>
+        <div class="spot" onclick="focusOnSpot('Snack4')">Snack Matira</div>
+        <div class="spot" onclick="focusOnSpot('Snack5')">Snack Monoihere</div>
+        <div class="spot" onclick="focusOnSpot('Snack6')">Snack Otoamana</div>
+        <div class="spot" onclick="focusOnSpot('Snack7')">Snack Irène</div>
+        <div class="spot" onclick="focusOnSpot('Snack8')">Chez Nico</div>
+        <div class="spot" onclick="focusOnSpot('Snack9')">Boulangerie Matira</div>
+        <div class="spot" onclick="focusOnSpot('Snack10')">Pâtisserie St James</div>
+        <div class="spot" onclick="focusOnSpot('Snack11')">Iaorana Gelato</div>
+        <div class="spot" onclick="focusOnSpot('Snack12')">Bora Healthy</div>
+        <div class="spot" onclick="focusOnSpot('Snack13')">BobCat Wine & Cofee</div>
+        <div class="spot" onclick="focusOnSpot('Snack14')">Kai Kai Bora</div>
+        <div class="spot" onclick="focusOnSpot('Snack15')">Hello Sunshine</div>
+        <div class="spot" onclick="focusOnSpot('Snack16')">Tchoutchou Churros</div>
+        <div class="spot" onclick="focusOnSpot('Snack17')">Chez Penu</div>
+      </div>
+
+      <div class="category" data-cat="hotels">
+        <h3>Hôtels</h3>
+        <div class="spot" onclick="focusOnSpot('hotel1')">Conrad Bora Bora Nui</div>
+        <div class="spot" onclick="focusOnSpot('hotel2')">Four Seasons</div>
+        <div class="spot" onclick="focusOnSpot('hotel3')">Hotel Matira</div>
+        <div class="spot" onclick="focusOnSpot('hotel4')">Intercontinental Le Moana</div>
+        <div class="spot" onclick="focusOnSpot('hotel5')">The Westin Bora Bora Resort & Spa</div>
+        <div class="spot" onclick="focusOnSpot('hotel6')">Le Bora Bora by Pearl</div>
+        <div class="spot" onclick="focusOnSpot('hotel7')">Intercontinental Thalasso Spa</div>
+        <div class="spot" onclick="focusOnSpot('hotel8')">Maitai Polynesia</div>
+        <div class="spot" onclick="focusOnSpot('hotel9')">Royal Bora Bora</div>
+        <div class="spot" onclick="focusOnSpot('hotel10')">Saint Regis</div>
+      </div>
+
+
+      <div class="category" data-cat="hebergement">
+        <h3>Petite Hotellerie</h3>
+        <div class="spot" onclick="focusOnSpot('fare1')">Pension Chez Nono</div>
+        <div class="spot" onclick="focusOnSpot('fare2')">Bora Bora Holiday's Lodge</div>
+        <div class="spot" onclick="focusOnSpot('fare3')">Bora Bungalove</div>
+        <div class="spot" onclick="focusOnSpot('fare4')">Bora Vaite Lodge</div>
+        <div class="spot" onclick="focusOnSpot('fare5')">Chez Alice et Raphael</div>
+        <div class="spot" onclick="focusOnSpot('fare6')">Chez Robert et Tina - Fare Rohivai</div>
+        <div class="spot" onclick="focusOnSpot('fare7')">Chez Rosina</div>
+        <div class="spot" onclick="focusOnSpot('fare8')">Eden Beach Hotel Bora Bora</div>
+        <div class="spot" onclick="focusOnSpot('fare9')">Oa Oa Lodge</div>
+        <div class="spot" onclick="focusOnSpot('fare10')">Rohotu Fare Lodge</div>
+        <div class="spot" onclick="focusOnSpot('fare11')">Sunset Hill Lodge</div>
+        <div class="spot" onclick="focusOnSpot('fare12')">Village Temanuata</div>
+        <div class="spot" onclick="focusOnSpot('fare13')">Camping Motu Ecologique</div>
+        <div class="spot" onclick="focusOnSpot('fare14')">Fare Rohivai</div>
+        <div class="spot" onclick="focusOnSpot('fare15')">Oa Oa Village</div>
+      </div>
+
+      <div class="category" data-cat="market">
+        <h3>Supérettes</h3>
+        <div class="spot" onclick="focusOnSpot('market1')">Chin Lee Market</div>
+        <div class="spot" onclick="focusOnSpot('market2')">Super U Toa Amok</div>
+        <div class="spot" onclick="focusOnSpot('market3')">U Express Toa Areni</div>
+        <div class="spot" onclick="focusOnSpot('market4')">Hitiata</div>
+        <div class="spot" onclick="focusOnSpot('market5')">Magasin Matira</div>
+        <div class="spot" onclick="focusOnSpot('market6')">Tiare Market</div>
+        <div class="spot" onclick="focusOnSpot('market7')">Bora Trading</div>
+      </div>
+
+      <div class="category" data-cat="pharmacy">
+        <h3>Pharmacie</h3>
+        <div class="spot" onclick="focusOnSpot('pharmacy1')">Pharmacie Lafayette Bora Bora</div>
+        <div class="spot" onclick="focusOnSpot('pharmacy2')">Pharmacie Te Ora Bora Bora</div>
+      </div>
+
+      <div class="category" data-cat="medical">
+        <h3>Medical</h3>
+        <div class="spot" onclick="focusOnSpot('medical1')">Dispensaire</div>
+        <div class="spot" onclick="focusOnSpot('medical2')">Dr Duval</div>
+        <div class="spot" onclick="focusOnSpot('medical3')">Dr Kelly</div>
+        <div class="spot" onclick="focusOnSpot('medical4')">Dr Justine</div>
+        <div class="spot" onclick="focusOnSpot('medical5')">Dr Azad</div>
+        <div class="spot" onclick="focusOnSpot('medical6')">Dr Maria</div>
+      </div>
+
+      <div class="category" data-cat="rentcar">
+        <h3>Location de voiture</h3>
+        <div class="spot" onclick="focusOnSpot('rentcar1')">Avis Vaitape</div>
+        <div class="spot" onclick="focusOnSpot('rentcar2')">Happy Rent</div>
+        <div class="spot" onclick="focusOnSpot('rentcar3')">Albert Store</div>
+        <div class="spot" onclick="focusOnSpot('rentcar4')">Heitaki Bora Rental Cars</div>
+        <div class="spot" onclick="focusOnSpot('rentcar5')">Matira Location</div>
+        <div class="spot" onclick="focusOnSpot('rentcar6')">Avis Matira</div>
+        <div class="spot" onclick="focusOnSpot('rentcar7')"> MRC Rent Bora Bora</div>
+        <div class="spot" onclick="focusOnSpot('rentcar8')">Maitai Electric Bicycle & Moped Rentals</div>
+        <div class="spot" onclick="focusOnSpot('rentcar9')">Hanihere Location</div>
+        <div class="spot" onclick="focusOnSpot('rentcar10')">Tangi Location</div>
+        <div class="spot" onclick="focusOnSpot('rentcar11')">Bora Bora Best Rent</div>
+        <div class="spot" onclick="focusOnSpot('rentcar12')">Bora Rent</div>
+        <div class="spot" onclick="focusOnSpot('rentcar13')">Raimoana Location</div>
+        <div class="spot" onclick="focusOnSpot('rentcar14')">Teretere Location Bora</div>
+        <div class="spot" onclick="focusOnSpot('rentcar15')">Bora Bora K&L Rent a Car</div>
+      </div>
+
+      <div class="category" data-cat="essence">
+        <h3>Station Essence</h3>
+        <div class="spot" onclick="focusOnSpot('essence1')">Station Mobile</div>
+        <div class="spot" onclick="focusOnSpot('essence2')">Station Total</div>
+        <div class="spot" onclick="focusOnSpot('essence3')">Station Pacific</div>
+        <div class="spot" onclick="focusOnSpot('essence4')">Station Pacific</div>
+      </div>
+
+      <div class="category" data-cat="church">
+        <h3>Églises</h3>
+        <div class="spot" onclick="focusOnSpot('church1')">Temple Protestant de Vaitape</div>
+        <div class="spot" onclick="focusOnSpot('church2')">Temple Protestant de Faanui</div>
+        <div class="spot" onclick="focusOnSpot('church3')">Temple Protestant de Anau</div>
+        <div class="spot" onclick="focusOnSpot('church4')">Église Catholique</div>
+      </div>
+
+      <div class="category" data-cat="sites">
+        <h3>Sites Historiques</h3>
+        <div class="spot" onclick="focusOnSpot('sites1')">Canon de Farepiti</div>
+        <div class="spot" onclick="focusOnSpot('sites2')">Canon du Pearl Beach</div>
+        <div class="spot" onclick="focusOnSpot('sites3')">Canon de Anau</div>
+        <div class="spot" onclick="focusOnSpot('sites4')">Marae de Anau</div>
+        <div class="spot" onclick="focusOnSpot('sites5')">Marae Fare-Opu</div>
+      </div>
+
+      <div class="category" data-cat="administrations">
+        <h3>Administrations</h3>
+        <div class="spot" onclick="focusOnSpot('administrations1')">Mairie de Bora Bora</div>
+        <div class="spot" onclick="focusOnSpot('administrations2')">Poste de Gendarmerie</div>
+        <div class="spot" onclick="focusOnSpot('administrations3')">Caserne Pompier</div>
+        <div class="spot" onclick="focusOnSpot('administrations4')">Poste</div>
+        <div class="spot" onclick="focusOnSpot('administrations5')">Office du Tourisme</div>
+        <div class="spot" onclick="focusOnSpot('administrations6')">Aéroport</div>
+      </div>
+
+      <div class="category" data-cat="traveloffice">
+        <h3>Agences de Voyage</h3>
+        <div class="spot" onclick="focusOnSpot('traveloffice1')">Air Tahiti</div>
+        <div class="spot" onclick="focusOnSpot('traveloffice2')">Air Moana</div>
+        <div class="spot" onclick="focusOnSpot('traveloffice3')">Apetahi Express</div>
+        <div class="spot" onclick="focusOnSpot('traveloffice4')">Maupiti Express</div>
+      </div>
+
+      <div class="category" data-cat="bank">
+        <h3>Banques</h3>
+        <div class="spot" onclick="focusOnSpot('bank1')">Banque de Polynésie</div>
+        <div class="spot" onclick="focusOnSpot('bank2')">Banque Socredo</div>
+        <div class="spot" onclick="focusOnSpot('bank3')">Banque Tahiti</div>
+      </div>
+
+      <div class="category" data-cat="wc">
+        <h3>Toilettes Publique</h3>
+        <div class="spot" onclick="focusOnSpot('wc1')">Toilettes de Vaitape 1</div>
+        <div class="spot" onclick="focusOnSpot('wc2')">Toilettes de Vaitape 2</div>
+        <div class="spot" onclick="focusOnSpot('wc3')">Toilettes de Matira</div>
+      </div>
+
+      <div class="category" data-cat="art">
+        <h3>Gallerie D'Art</h3>
+        <div class="spot" onclick="focusOnSpot('art1')">Art Gallery & Studio Alain Desoert</div>
+        <div class="spot" onclick="focusOnSpot('art2')">Art Studia & Gallery Garick Yrondi</div>
+        <div class="spot" onclick="focusOnSpot('art3')">Artist Studio Jean-Pierre Frey</div>
+        <div class="spot" onclick="focusOnSpot('art4')">Bora Art Upstairs</div>
+        <div class="spot" onclick="focusOnSpot('art5')">Bora Bora Masson Art Gallery</div>
+        <div class="spot" onclick="focusOnSpot('art6')">Bora Secret</div>
+      </div>
+
+      <div class="category" data-cat="shop">
+        <h3>Boutiques</h3>
+        <div class="spot" onclick="focusOnSpot('shop1')">Artisanat</div>
+        <div class="spot" onclick="focusOnSpot('shop2')">Boutiques Bora Bora</div>
+        <div class="spot" onclick="focusOnSpot('shop3')">Bora Bora Original</div>
+        <div class="spot" onclick="focusOnSpot('shop4')">Héritage</div>
+        <div class="spot" onclick="focusOnSpot('shop5')">Rainbow Lockers</div>
+        <div class="spot" onclick="focusOnSpot('shop6')">Arana</div>
+        <div class="spot" onclick="focusOnSpot('shop7')">Bora Bébé Sport</div>
+        <div class="spot" onclick="focusOnSpot('shop8')">Bora Home</div>
+        <div class="spot" onclick="focusOnSpot('shop9')">Bora Spirit T-shirt & Souvenirs</div>
+        <div class="spot" onclick="focusOnSpot('shop10')">Chez Sophie</div>
+        <div class="spot" onclick="focusOnSpot('shop11')">Kaimana Nui Souvenir Shop</div>
+        <div class="spot" onclick="focusOnSpot('shop12')">Kaimana Nui Shop</div>
+        <div class="spot" onclick="focusOnSpot('shop13')">La Galerie</div>
+        <div class="spot" onclick="focusOnSpot('shop14')">Mahana Bora Concept Store</div>
+        <div class="spot" onclick="focusOnSpot('shop15')">Elix Vape Bora Bora</div>
+        <div class="spot" onclick="focusOnSpot('shop16')">Pacific Sud</div>
+        <div class="spot" onclick="focusOnSpot('shop17')">Reef Bora Bora</div>
+        <div class="spot" onclick="focusOnSpot('shop18')">Saltwater Family</div>
+        <div class="spot" onclick="focusOnSpot('shop19')">Teavanui Shop</div>
+        <div class="spot" onclick="focusOnSpot('shop20')">Tiare Market Shop</div>
+        <div class="spot" onclick="focusOnSpot('shop21')">Top News</div>
+        <div class="spot" onclick="focusOnSpot('shop22')">Guavaz Bora Bora</div>
+      </div>
+
+      <div class="category" data-cat="rando">
+        <h3>Randonnées</h3>
+        <div class="spot" onclick="focusOnSpot('hike1')">Mont Pahia</div>
+        <div class="spot" onclick="focusOnSpot('hike2')">Mont Otemanu</div>
+      </div>
+      <!-- Snacks, Hôtels, Hébergements, etc... -->
+
+    </div>
+
+    <!-- Carte interactive -->
+    <div id="map"></div>
+
+    <div id="category-buttons">
+  <button id="show-all">Tout afficher</button>
+
+</div>
+
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
+
